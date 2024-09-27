@@ -1,0 +1,13 @@
+<h1>Tabela Periódica Interativa</h1>
+<ul>
+  <li *ngFor="let elemento of elementos()" (click)="selecionarElemento(elemento)">
+    {{ elemento.nome }} ({{ elemento.simbolo }})
+  </li>
+</ul>
+
+<h2>Propriedades do Elemento Selecionado:</h2>
+<p>{{ propriedadesElemento() }}</p>
+
+<div class="image-container">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0I-jLvYpxOSsFo1NAkuCRipxEe0GIIuF3sg&s" alt="Descrição da Imagem">
+</div>

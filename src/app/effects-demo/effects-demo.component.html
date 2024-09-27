@@ -1,0 +1,10 @@
+<h2>Efeitos Reativos</h2>
+<ul>
+  <li *ngFor="let elemento of elementos" (click)="selecionarElemento(elemento)">
+    {{ elemento.nome }} ({{ elemento.simbolo }})
+  </li>
+</ul>
+
+<p [class.highlight]="elementoSelecionado()">
+  Elemento Selecionado: {{ elementoSelecionado()?.nome || 'Nenhum' }}
+</p>

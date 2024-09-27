@@ -1,0 +1,8 @@
+<h2>Elementos Químicos</h2>
+<ul>
+  <li *ngFor="let elemento of elementos" (click)="selecionarElemento(elemento)">
+    {{ elemento.nome }} ({{ elemento.simbolo }})
+  </li>
+</ul>
+
+<p *ngIf="elementoSelecionado()">Elemento Selecionado: {{ elementoSelecionado()?.nome }}</p>

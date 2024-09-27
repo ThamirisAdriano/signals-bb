@@ -1,0 +1,13 @@
+<h2>Detalhes do Elemento</h2>
+<ul>
+  <li *ngFor="let elemento of elementos" (click)="selecionarElemento(elemento)">
+    {{ elemento.nome }} ({{ elemento.simbolo }})
+  </li>
+</ul>
+
+<div *ngIf="elementoSelecionado()">
+  <p>Nome: {{ elementoSelecionado()?.nome }}</p>
+  <p>Símbolo: {{ elementoSelecionado()?.simbolo }}</p>
+  <p>Número Atômico: {{ elementoSelecionado()?.numeroAtomico }}</p>
+  <button (click)="resetarSelecao()">Resetar Seleção</button>
+</div>

@@ -1,0 +1,26 @@
+<h2>Cálculo da Massa Atômica</h2>
+
+<!-- Lista para selecionar o primeiro elemento -->
+<h3>Selecione o primeiro elemento:</h3>
+<ul>
+  <li *ngFor="let elemento of elementos" (click)="selecionarElemento1(elemento)">
+    {{ elemento.nome }} ({{ elemento.simbolo }}) - Número Atômico: {{ elemento.numeroAtomico }}
+  </li>
+</ul>
+
+<!-- Exibe o primeiro elemento selecionado -->
+<p>Elemento 1 Selecionado: {{ elementoSelecionado1()?.nome || 'Nenhum' }}</p>
+
+<!-- Lista para selecionar o segundo elemento -->
+<h3>Selecione o segundo elemento:</h3>
+<ul>
+  <li *ngFor="let elemento of elementos" (click)="selecionarElemento2(elemento)">
+    {{ elemento.nome }} ({{ elemento.simbolo }}) - Número Atômico: {{ elemento.numeroAtomico }}
+  </li>
+</ul>
+
+<!-- Exibe o segundo elemento selecionado -->
+<p>Elemento 2 Selecionado: {{ elementoSelecionado2()?.nome || 'Nenhum' }}</p>
+
+<!-- Exibe a massa atômica calculada -->
+<p>Massa Atômica Total: {{ massaAtomicaTotal() }}</p>

@@ -1,0 +1,5 @@
+<h2>Sinais Compartilhados</h2>
+<p>Elemento Selecionado: {{ sharedSignalService.elementoSelecionado()?.nome || 'Nenhum' }}</p>
+<button (click)="sharedSignalService.selecionarElemento({nome: 'Ouro', simbolo: 'Au', numeroAtomico: 79})">
+  Selecionar Ouro
+</button>

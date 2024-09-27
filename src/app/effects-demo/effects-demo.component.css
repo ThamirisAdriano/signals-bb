@@ -1,0 +1,87 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2b3e2f;
+    color: #e8e8e4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  h2 {
+    font-size: 2rem;
+    color: #c7b42c;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  li {
+    background-color: #344e41;
+    padding: 10px 15px;
+    border: 2px solid #e8e8e4;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(200, 180, 44, 0.3);
+    transition: left 0.3s ease;
+  }
+  
+  li:hover::before {
+    left: 100%;
+  }
+  
+  li:hover {
+    background-color: #3a5f44;
+    transform: scale(1.05);
+  }
+  
+  li:active {
+    transform: scale(0.95);
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #c7b42c;
+    transition: color 0.3s ease;
+  }
+  
+  p.highlight {
+    animation: highlightEffect 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes highlightEffect {
+    0% {
+      color: #e8e8e4;
+      transform: scale(1);
+    }
+    50% {
+      color: #c7b42c;
+      transform: scale(1.1);
+    }
+    100% {
+      color: #e8e8e4;
+      transform: scale(1);
+    }
+  }
+  
