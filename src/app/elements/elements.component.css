@@ -1,44 +1,65 @@
+
 :host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #2c3e2f; /* Fundo verde escuro estilo Breaking Bad */
-    color: #e8e8e4; /* Cor de texto em tom claro para contraste */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra suave para efeito de destaque */
+    text-align: center;
+    color: #e8e8e4; 
   }
   
   h2 {
     font-size: 2rem;
-    color: #c7b42c; /* Amarelo suave, semelhante à paleta de Breaking Bad */
+    color:var(--primary-color);
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efeito de sombra para destaque */
+    font-optical-sizing: auto;
+    font-weight: 600px;
+    font-style: normal;
+  }
+
+  h3{
+    color:var(--primary-color);
+    text-align: justify;
+
   }
   
   ul {
     list-style: none;
     padding: 0;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
   }
+
+  .elements{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .selecao_elemento{
+    display: block;
+  }
+
+  .detalhe_elemento p{
+    border: 1px solid white;
+    width: 217px;
+    height: 118px;
+    font-size: 17px;
+  }
   
   li {
-    background-color: #344e41; /* Verde escuro para elementos */
     padding: 10px 15px;
-    border: 1px solid #e8e8e4; /* Borda clara para contraste */
+    border: 1px solid #e8e8e4; 
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
+  
   li:hover {
-    background-color: #3a5f44; /* Efeito de hover mais claro */
+    border: 1px solid var(--primary-color); 
   }
   
   li:active {
-    transform: scale(0.95); /* Pequeno efeito de clique */
+    transform: scale(0.95); 
   }
   
   p {
@@ -47,7 +68,7 @@
   }
   
   button {
-    background-color: #bfae48; /* Amarelo inspirado em Breaking Bad */
+    background-color: #bfae48; 
     color: #2c3e2f;
     padding: 10px 20px;
     border: none;
@@ -57,7 +78,7 @@
   }
   
   button:hover {
-    background-color: #d4c36a; /* Efeito hover para o botão */
+    background-color: #d4c36a; 
   }
   
   button:active {

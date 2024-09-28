@@ -1,13 +1,28 @@
-<h1>Tabela Periódica Interativa</h1>
-<ul>
-  <li *ngFor="let elemento of elementos()" (click)="selecionarElemento(elemento)">
-    {{ elemento.nome }} ({{ elemento.simbolo }})
-  </li>
-</ul>
+<div>
+  <div class="image-container">
+    <img src="./../../assets/Banner.png" alt="Descrição da Imagem">
+  </div>
 
-<h2>Propriedades do Elemento Selecionado:</h2>
-<p>{{ propriedadesElemento() }}</p>
+  <h2>Tabela periódica interativa</h2>
 
-<div class="image-container">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0I-jLvYpxOSsFo1NAkuCRipxEe0GIIuF3sg&s" alt="Descrição da Imagem">
+  <div class="elements">
+    <div class="selecao_elemento">
+    <h3>Selecione o elemento</h3>
+    <ul>
+      <li *ngFor="let elemento of elementos()" (click)="selecionarElemento(elemento)">
+        {{ elemento.nome }} ({{ elemento.simbolo }})
+      </li>
+    </ul>
+  </div>
+  <div class="detalhe_elemento">
+    <h3>Detalhes do elemento</h3>
+    <p>{{ propriedadesElemento() }}</p>
+  </div>
+
+</div>
+
+
+
+
+
 </div>

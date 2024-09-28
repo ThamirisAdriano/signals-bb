@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.main-background {
+    background: linear-gradient(to bottom, #09232E, #145460);
+    min-height: 100vh; 
+    padding: 20px; 
+    box-sizing: border-box; 
+  }
+  
+  body {
+    margin: 0; /* Remove margens padrão do body */
+    font-family: "Space Grotesk", sans-serif;
+  }
+  
+  
+
+  :root {
+    --primary-color:   #6FFF90;
+    --secondary-color: #2ecc71;
+    --background-color: #f5f5f5;
+    --text-color: #333333;
+  }
+
