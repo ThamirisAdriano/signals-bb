@@ -33,6 +33,10 @@ export class ComputedSignalComponent {
     { nome: 'Oxigênio', simbolo: 'O', numeroAtomico: 8, numeroNeutrons: 8 },
     { nome: 'Sódio', simbolo: 'Na', numeroAtomico: 11, numeroNeutrons: 12 },
     { nome: 'Cloro', simbolo: 'Cl', numeroAtomico: 17, numeroNeutrons: 18 },
+    { nome: 'Argônio', simbolo: 'Ar', numeroAtomico: 18, numeroNeutrons: 22 },
+    { nome: 'Potássio', simbolo: 'K', numeroAtomico: 19, numeroNeutrons: 20 },
+    { nome: 'Calcio', simbolo: 'Ca', numeroAtomico: 20, numeroNeutrons: 24 },
+    { nome: 'Estrôncio', simbolo: 'Se', numeroAtomico: 34, numeroNeutrons: 34 }
   ];
 
   // Funções para selecionar os elementos
