@@ -23,7 +23,8 @@ selecionarElemento(elemento: Elemento) {
 
 Agora, a mágica acontece: toda vez que o estado do `elementoSelecionado` mudar, a interface que depende desse valor será automaticamente atualizada!
 
-[Gravação de Tela 2024-10-09 às 06.17.04.mov](https://prod-files-secure.s3.us-west-2.amazonaws.com/1e28fc35-041c-4435-be2a-185be0a29d28/254175a2-56b2-4b96-bfab-103fa3ab1919/Gravacao_de_Tela_2024-10-09_as_06.17.04.mov)
+https://github.com/user-attachments/assets/101f1546-3f9c-4d4b-9b94-3f9d4ec3a259
+
 
 ### Signals vs observables: menos complicação, mais simplicidade
 
