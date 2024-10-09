@@ -1,27 +1,72 @@
-# TabelaPeriodica
+# O que são signals no angular?
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
+Os **signals** são uma nova funcionalidade que chegou no Angular 16 e vieram para simplificar a forma como lidamos com o estado em componentes. Em vez de precisarmos de mecanismos complexos, como observables ou gerenciadores de estado pesados, os signals oferecem uma maneira mais direta e eficiente de monitorar mudanças e atualizar a interface do usuário.
 
-## Development server
+Um **signal** nada mais é do que um "guardador de valor", ou seja, ele armazena um dado e avisa automaticamente o Angular quando esse dado muda. Isso significa que, sempre que o valor de um signal for alterado, a interface vai se atualizar de forma reativa, sem que você precise fazer nada de especial para isso.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Exemplo prático: criando e atualizando um signal
 
-## Code scaffolding
+Vamos criar um signal chamado `elementoSelecionado`, que vai armazenar qual elemento químico foi selecionado pelo usuário. Inicialmente, ele será `null` porque nenhum elemento está selecionado. Depois, quando o usuário clicar em um item da lista, atualizamos esse signal.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```tsx
+elementoSelecionado = signal<Elemento | null>(null);
+```
 
-## Build
+Toda vez que o usuário escolher um elemento, o método `.set()` é chamado, atualizando o estado do `elementoSelecionado`. Olha como é simples fazer isso:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```tsx
 
-## Running unit tests
+selecionarElemento(elemento: Elemento) {
+  this.elementoSelecionado.set(elemento);
+}
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Agora, a mágica acontece: toda vez que o estado do `elementoSelecionado` mudar, a interface que depende desse valor será automaticamente atualizada!
 
-## Running end-to-end tests
+[Gravação de Tela 2024-10-09 às 06.17.04.mov](https://prod-files-secure.s3.us-west-2.amazonaws.com/1e28fc35-041c-4435-be2a-185be0a29d28/254175a2-56b2-4b96-bfab-103fa3ab1919/Gravacao_de_Tela_2024-10-09_as_06.17.04.mov)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Signals vs observables: menos complicação, mais simplicidade
 
-## Further help
+Embora os **observables** sejam poderosos e continuem sendo muito úteis no Angular, principalmente para coisas mais complexas, como chamadas de API ou eventos contínuos, os **signals** são uma alternativa bem mais simples para cenários onde você só precisa lidar com o estado local ou mudanças pontuais.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Ao contrário dos observables, que precisam de assinaturas e operadores para manipular dados, os signals são mais "plug and play". Você cria um signal, atualiza seu valor, e o Angular cuida do resto, sem precisar de muito código extra.
+
+### Exemplo de signal computado
+
+```tsx
+elementoInfo = computed(() => {
+  const elemento = this.elementoSelecionado();
+  return elemento
+    ? `Nome: ${elemento.nome} (${elemento.simbolo}), Número Atômico: ${elemento.numeroAtomico}`
+    : 'Nenhum elemento selecionado';
+});
+```
+
+Aqui, o `elementoInfo` vai sempre gerar uma string com o nome, símbolo e número atômico do elemento que o usuário selecionou. Se o `elementoSelecionado` mudar, o `elementoInfo` também será atualizado automaticamente, sem que você precise reescrever código para isso. Essa abordagem é chamada de **lazy evaluation** — ou seja, o valor só é calculado quando necessário.
+
+### Como tudo isso se encaixa na interface
+
+Com os signals, a forma de exibir os dados na interface fica super simples. Aqui está um exemplo de como você pode usar os signals no HTML para exibir o elemento selecionado e suas informações detalhadas:
+
+```html
+<ul>
+  <li *ngFor="let elemento of elementos" (click)="selecionarElemento(elemento)">
+    {{ elemento.nome }} ({{ elemento.simbolo }})
+  </li>
+</ul>
+
+<p *ngIf="elementoSelecionado()">Elemento Selecionado: {{ elementoSelecionado()?.nome }}</p>
+
+<p>{{ elementoInfo() }}</p>
+
+```
+
+Esse código faz o seguinte:
+
+1. Mostra uma lista de elementos químicos e, quando o usuário clica em um deles, o `elementoSelecionado` é atualizado.
+2. Exibe o nome do elemento selecionado (se houver um).
+3. Mostra as informações detalhadas do elemento usando o signal computado `elementoInfo`.
+
+### Conclusão: por que os signals são legais?
+
+Os **signals** tornam a vida da pessoa desenvolvedora Angular muito mais simples. Se você está trabalhando em algo onde o estado muda de forma local (por exemplo, selecionar um item em uma lista, mudar uma configuração), os signals são perfeitos. Eles são fáceis de criar, de atualizar e o Angular já faz o trabalho pesado de re-renderizar tudo para você. Além disso, para quem já se sentiu perdido no mundo dos observables, os signals são uma alternativa mais leve e menos complexa para lidar com estados e reatividade.
