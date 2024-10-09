@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-import { signal, effect } from '@angular/core';
-
-interface Elemento {
-  nome: string;
-  simbolo: string;
-  numeroAtomico: number;
-}
+import { ElementoService, Elemento } from './elemento.service'; // Importa o serviço e a interface
 
 @Component({
   selector: 'app-effects-demo',
@@ -13,26 +7,21 @@ interface Elemento {
   styleUrls: ['./effects-demo.component.css']
 })
 export class EffectsDemoComponent {
-  elementoSelecionado = signal<Elemento | null>(null);
 
-  elementos: Elemento[] = [
+  constructor(private elementoService: ElementoService) {}
+
+  elementos = [
     { nome: 'Hidrogênio', simbolo: 'H', numeroAtomico: 1 },
     { nome: 'Oxigênio', simbolo: 'O', numeroAtomico: 8 },
     { nome: 'Sódio', simbolo: 'Na', numeroAtomico: 11 },
-    { nome: 'Cloro', simbolo: 'Cl', numeroAtomico: 17 },
+    { nome: 'Cloro', simbolo: 'Cl', numeroAtomico: 17 }
   ];
 
-  constructor() {
-    // Efeito que faz log sempre que o elemento selecionado muda
-    effect(() => {
-      const elemento = this.elementoSelecionado();
-      if (elemento) {
-        console.log(`Elemento Selecionado: ${elemento.nome}`);
-      }
-    });
+  selecionarElemento(elemento: Elemento) {
+    this.elementoService.selecionarElemento(elemento); // Atualiza o estado via serviço
   }
 
-  selecionarElemento(elemento: Elemento) {
-    this.elementoSelecionado.set(elemento);
+  obterElementoSelecionado() {
+    return this.elementoService.obterElementoSelecionado(); // Obtém o estado via serviço
   }
 }
