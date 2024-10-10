@@ -75,7 +75,7 @@ Esse código faz o seguinte:
 
 Com observables e outros mecanismos reativos tradicionais no Angular, o Zone.js é a peça-chave que monitora as alterações assíncronas e faz com que o Angular detecte e reflita essas mudanças na interface do usuário. O Zone.js funciona interceptando eventos e detectando mudanças para acionar automaticamente a detecção de mudanças.
 
-No entanto, com signals, o Angular faz essa detecção de mudanças de forma mais direta e específica, sem depender tanto do Zone.js. Os signals monitoram diretamente onde os valores estão sendo usados, e o Angular atualiza a interface apenas onde realmente necessário, sem que precise observar o ciclo completo de mudanças assíncronas.
+No entanto, com signals, o Angular faz essa detecção de mudanças de forma mais direta e específica. Os signals monitoram diretamente onde os valores estão sendo usados, e o Angular atualiza a interface apenas onde realmente necessário, sem que precise observar o ciclo completo de mudanças assíncronas.
 
 Isso pode melhorar a performance, já que o ciclo de detecção de mudanças não precisa ser disparado em toda a aplicação. Ao invés disso, apenas as partes da interface que estão relacionadas diretamente aos signals são atualizadas.
 
