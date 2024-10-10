@@ -1,5 +1,8 @@
 # O que são signals no angular?
 
+![image](https://github.com/user-attachments/assets/e25ef7e6-fb2a-4594-95fc-44ff21cdb17e)
+
+
 Os **signals** são uma nova funcionalidade que chegou no Angular 16 e vieram para simplificar a forma como lidamos com o estado em componentes. Em vez de precisarmos de mecanismos complexos, como observables ou gerenciadores de estado pesados, os signals oferecem uma maneira mais direta e eficiente de monitorar mudanças e atualizar a interface do usuário.
 
 Um **signal** nada mais é do que um "guardador de valor", ou seja, ele armazena um dado e avisa automaticamente o Angular quando esse dado muda. Isso significa que, sempre que o valor de um signal for alterado, a interface vai se atualizar de forma reativa, sem que você precise fazer nada de especial para isso.
@@ -67,6 +70,55 @@ Esse código faz o seguinte:
 1. Mostra uma lista de elementos químicos e, quando o usuário clica em um deles, o `elementoSelecionado` é atualizado.
 2. Exibe o nome do elemento selecionado (se houver um).
 3. Mostra as informações detalhadas do elemento usando o signal computado `elementoInfo`.
+
+###Writable Signals e Computed Signals: Entendendo as Diferenças
+No Angular, os signals podem ser de dois tipos principais: writable signals (sinais graváveis) e computed signals (sinais computados). Cada um tem um papel diferente no gerenciamento do estado:
+
+Writable Signals: Esses sinais permitem que você armazene e atualize valores diretamente. Ou seja, você pode mudar o valor do sinal usando o método .set(). No nosso exemplo, elementoSelecionado é um sinal gravável. Isso significa que, quando o usuário clica em um elemento da lista, o valor de elementoSelecionado é atualizado com as informações do elemento selecionado.
+
+```
+elementoSelecionado = signal<Elemento | null>(null); // Sinal gravável
+```
+
+Os sinais graváveis são ideais para situações em que o valor muda diretamente, como em interações de usuário (clicar em um botão, selecionar um item, etc.).
+
+Computed Signals: Já os sinais computados dependem de outros sinais para gerar um valor. Eles são "leitores", ou seja, não podemos atualizar diretamente seu valor. No nosso exemplo, elementoInfo é um sinal computado, porque ele deriva seu valor a partir do elementoSelecionado. Toda vez que elementoSelecionado muda, o valor de elementoInfo é recalculado automaticamente.
+
+```
+elementoInfo = computed(() => {
+  const elemento = this.elementoSelecionado();
+  return elemento
+    ? `Nome: ${elemento.nome} (${elemento.simbolo}), Número Atômico: ${elemento.numeroAtomico}`
+    : 'Nenhum elemento selecionado';
+});
+```
+Esse mecanismo de lazy evaluation garante que o valor só será calculado quando necessário, e o resultado é armazenado em cache até que o sinal base (elementoSelecionado) mude.
+
+###Controle Sobre Efeitos no Angular
+Agora que entendemos como funcionam os writable e computed signals, podemos explorar como os efeitos entram em cena. No Angular, um efeito é uma função que é executada sempre que um ou mais sinais mudam. Isso pode ser útil para gerar logs, sincronizar dados com uma API, ou até mesmo executar ações assíncronas.
+
+O que torna os efeitos especiais é a possibilidade de controlar quando eles devem ser criados e quando devem ser destruídos. Isso garante que não consumimos recursos de maneira desnecessária, como memória ou processamento, quando um efeito não é mais necessário.
+
+No Angular, usamos a função onCleanup() para garantir que qualquer recurso que um efeito esteja utilizando seja limpo corretamente quando o efeito for destruído ou reiniciado. Isso é importante quando você está lidando com tarefas como assinaturas, logs, timers, ou chamadas de API.
+
+Exemplo básico de controle sobre a criação e destruição de um efeito:
+
+```
+effect(() => {
+  const elemento = this.elementoSelecionado();
+  if (elemento) {
+    console.log(`Elemento Selecionado: ${elemento.nome}`);
+
+    // Função de limpeza que é executada quando o efeito for destruído ou reiniciado
+    onCleanup(() => {
+      console.log(`Efeito destruído para o elemento: ${elemento.nome}`);
+    });
+  }
+});
+```
+
+###Por que isso é importante?
+Quando estamos criando uma aplicação, como a de elementos químicos, nem sempre queremos que os efeitos fiquem rodando indefinidamente. O uso de onCleanup() ajuda a garantir que o efeito pare de rodar quando não for mais necessário, evitando possíveis problemas de performance.
 
 ### Conclusão: por que os signals são legais?
 
