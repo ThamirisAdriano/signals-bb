@@ -71,6 +71,16 @@ Esse código faz o seguinte:
 2. Exibe o nome do elemento selecionado (se houver um).
 3. Mostra as informações detalhadas do elemento usando o signal computado `elementoInfo`.
 
+### Signals e Zone.js: Reatividade sem Dependência Externa
+
+Com observables e outros mecanismos reativos tradicionais no Angular, o Zone.js é a peça-chave que monitora as alterações assíncronas e faz com que o Angular detecte e reflita essas mudanças na interface do usuário. O Zone.js funciona interceptando eventos e detectando mudanças para acionar automaticamente a detecção de mudanças.
+
+No entanto, com signals, o Angular faz essa detecção de mudanças de forma mais direta e específica, sem depender tanto do Zone.js. Os signals monitoram diretamente onde os valores estão sendo usados, e o Angular atualiza a interface apenas onde realmente necessário, sem que precise observar o ciclo completo de mudanças assíncronas.
+
+Isso pode melhorar a performance, já que o ciclo de detecção de mudanças não precisa ser disparado em toda a aplicação. Ao invés disso, apenas as partes da interface que estão relacionadas diretamente aos signals são atualizadas.
+
+Quando estamos usando signals, não precisamos do Zone.js para gerenciar as mudanças de estado de forma reativa. Isso reduz a complexidade e o consumo de recursos em aplicações que não precisam monitorar eventos assíncronos, tornando o uso de signals uma solução mais eficiente para muitas situações no Angular.
+
 ### Writable Signals e Computed Signals: Entendendo as Diferenças
 No Angular, os signals podem ser de dois tipos principais: writable signals (sinais graváveis) e computed signals (sinais computados). Cada um tem um papel diferente no gerenciamento do estado:
 
