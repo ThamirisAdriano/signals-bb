@@ -94,7 +94,7 @@ elementoInfo = computed(() => {
 ```
 Esse mecanismo de lazy evaluation garante que o valor só será calculado quando necessário, e o resultado é armazenado em cache até que o sinal base (elementoSelecionado) mude.
 
-###Controle Sobre Efeitos no Angular
+### Controle Sobre Efeitos no Angular
 Agora que entendemos como funcionam os writable e computed signals, podemos explorar como os efeitos entram em cena. No Angular, um efeito é uma função que é executada sempre que um ou mais sinais mudam. Isso pode ser útil para gerar logs, sincronizar dados com uma API, ou até mesmo executar ações assíncronas.
 
 O que torna os efeitos especiais é a possibilidade de controlar quando eles devem ser criados e quando devem ser destruídos. Isso garante que não consumimos recursos de maneira desnecessária, como memória ou processamento, quando um efeito não é mais necessário.
@@ -117,7 +117,7 @@ effect(() => {
 });
 ```
 
-###Por que isso é importante?
+### Por que isso é importante?
 Quando estamos criando uma aplicação, como a de elementos químicos, nem sempre queremos que os efeitos fiquem rodando indefinidamente. O uso de onCleanup() ajuda a garantir que o efeito pare de rodar quando não for mais necessário, evitando possíveis problemas de performance.
 
 ### Conclusão: por que os signals são legais?
