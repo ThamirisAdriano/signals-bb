@@ -71,7 +71,7 @@ Esse código faz o seguinte:
 2. Exibe o nome do elemento selecionado (se houver um).
 3. Mostra as informações detalhadas do elemento usando o signal computado `elementoInfo`.
 
-###Writable Signals e Computed Signals: Entendendo as Diferenças
+### Writable Signals e Computed Signals: Entendendo as Diferenças
 No Angular, os signals podem ser de dois tipos principais: writable signals (sinais graváveis) e computed signals (sinais computados). Cada um tem um papel diferente no gerenciamento do estado:
 
 Writable Signals: Esses sinais permitem que você armazene e atualize valores diretamente. Ou seja, você pode mudar o valor do sinal usando o método .set(). No nosso exemplo, elementoSelecionado é um sinal gravável. Isso significa que, quando o usuário clica em um elemento da lista, o valor de elementoSelecionado é atualizado com as informações do elemento selecionado.
